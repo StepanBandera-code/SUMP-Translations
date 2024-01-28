@@ -1,0 +1,61 @@
+version: "1.1.20"
+# Доступні серіалізатори:
+# LEGACY_AMPERSAND - "&c&lПриклад &c&9Тексту".
+# LEGACY_SECTION - "§c§lПриклад §c§9Тексту".
+# MINIMESSAGE - "<bold><red>Приклад</red> <blue>Тексту</blue></bold>". (https://webui.adventure.kyori.net/)
+# GSON - "[{"text":"Приклад","bold":true,"color":"red"},{"text":" ","bold":true},{"text":"Тексту","bold":true,"color":"blue"}]". (https://minecraft.tools/en/json_text.php/)
+# GSON_COLOR_DOWNSAMPLING - Те саме, що й GSON, але використовує даундискретизацію.
+serializer: LEGACY_AMPERSAND
+prefix: "LimboAPI &6>>&f"
+
+# Не використовуйте \n, використовуйте {NL} для нового рядка і {PRFX} для префікса.
+main:
+  check-for-updates: true
+  max-chat-message-length: 256
+  max-unknown-packet-length: 2048
+  max-single-generic-packet-length: 4096
+  max-multi-generic-packet-length: 131072
+  # За замовчуванням максимальна довжина пакета (у байтах), який буде оброблено, інші пакети буде відкинуто.
+  # Можна збільшити за допомогою Limbo#setMaxSuppressPacketLength
+  max-packet-length-to-suppress-it: 512
+  # Відкидає всі пакети, довжина яких перевищує поріг стиснення. Допомагає протистояти деяким атакам.
+  # Поріг стиснення має бути 300 або вище для підтримки підпису чату 1.19, тому за замовчуванням він вимкнений
+  discard-compression-on-login: false
+  discard-compression-after-login: false
+  # LimboAPI буде споживати більше оперативної пам'яті, якщо цю опцію увімкнено, але сумісність з іншими плагінами буде кращою
+  # Увімкніть його, якщо у вас встановлений плагін, який обходить стиснення (наприклад, Geyser)
+  save-uncompressed-packets: true
+  # Ведення журналу для повідомлень про з'єднання та роз'єднання.
+  logging-enabled: true
+  # Якщо ви хочете зменшити споживання оперативної пам'яті, змініть наведені нижче параметри.
+  # Використовуйте VelocityTools, щоб повністю заблокувати версії Minecraft (https://github.com/Elytrium/VelocityTools/releases/latest).
+  # Доступні версії:
+  # 1_7_2, 1_7_6, 1_8, 1_9, 1_9_1, 1_9_2, 1_9_4, 1_10, 1_11, 1_11_1, 1_12, 1_12_1, 1_12_2,
+  # 1_13, 1_13_1, 1_13_2, 1_14, 1_14_1, 1_14_2, 1_14_3, 1_14_4, 1_15, 1_15_1, 1_15_2,
+  # 1_16, 1_16_1, 1_16_2, 1_16_3, 1_16_4, 1_17, 1_17_1, 1_18, 1_18_2, 1_19, 1_19_1, 1_19_3, 1_20, 1_20_2, LATEST
+  prepare-min-version: "1_7_2"
+  prepare-max-version: "LATEST"
+  # Корисно, якщо ви хочете, щоб деякі плагіни працювали з LimboAPI. Наприклад, це потрібно для Floodgate, щоб замінити UUID.
+  pre-limbo-profile-request-plugins:
+    - "floodgate"
+    - "geyser"
+  # Регенерує слухачів, які повинні продовжити роботу перед LimboAPI при кожному виклику EventManager#register.
+  auto-regenerate-listeners: false
+  # Чи слід увімкнути скорочену інформацію про налагодження (скорочена інформація у F3), якщо не надано перевагу Limbo
+  reduced-debug-info: false
+  view-distance: 10
+  simulation-distance: 9
+  # Скільки чанків ми повинні відправляти, коли гравець спавниться.
+  #  0 = не надсилати чанки.
+  #  1 = надсилайте лише чанки спавну.
+  #  2 = надішліть чанки спавну і чанки поруч з ним.
+  #  3 = send the spawn chunk, chunks next to the spawn chunk and next to these chunks.
+  #  і так далі..
+  chunk-radius-send-on-spawn: 2
+  # Скільки чанків ми повинні відправити за один тик
+  chunks-per-tick: 16
+  messages:
+    too-big-packet: "{PRFX}{NL}{NL}&cВаш клієнт надіслав занадто великий пакет!"
+    invalid-ping: "{PRFX}{NL}{NL}&cВаш клієнт надіслав невірний пінг-пакет!"
+    invalid-switch: "{PRFX}{NL}{NL}&cВаш клієнт надіслав неочікуваний пакет перемикання стану!"
+    time-out: "{PRFX}{NL}{NL}Час вийшов."
