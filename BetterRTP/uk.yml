@@ -1,0 +1,64 @@
+# Help translate this file into more languages!
+Messages:
+  Prefix: '&7[&6BetterRTP&7] '
+  Success: ## Placeholders! %x% %y% and %z% are the x, y, and z coordinates that the player is being teleported to! #
+    Paid: '&aВас телепортовано за координатами&7 x=%x% y=%y% z=%z% за &c$%price%&7!'
+    Bypass: '&aВас телепортовано за координатами&7 x=%x% y=%y% z=%z%'
+    Loading: '&aБезпечне місце знайдено!  &7Завантажуємо чанки...'
+    Teleport: '&aТелепортація... &fБудь ласка, зачекайте, поки ми знайдемо безпечне місце!'
+  Failed:
+    Price: '&cНеможливо здійснити rtp через брак коштів! &7Вам потрібно мати принаймні $%price% &7для здійснення rtp!'
+    NotSafe: '&cНе вдалося знайти безпечне місце протягом %attempts% спроб! &7Вас не телепортовано!'
+    Hunger: '&cВи не можете використовувати rtp, бо ти... &7дуже голодний&c, з''їж щось, друже!'
+  Other:
+    Success: '&a%player% було телепортовано&7 x=%x% y=%y% z=%z%'
+    NotSafe: '&cНе вдалося знайти безпечне місце протягом %attempts% спроб! &7%player% не був телепортований!'
+    Biome: '&cСхоже, що біом&7 %biome%&c не існує! &7Спробуйте скористатися табом!'
+  Reload: '&eКонфігурацію успішно перезавантажено!'
+  NoPermission:
+    Basic: '&cВибачте! &7У вас немає дозволу на використання цієї команди! &8Дозвіл: %permission%'
+    World: '&cВибачте! &7Вам заборонено rtp у світі %world%! &8Дозвіл: %permission%'
+  DisabledWorld: '&cВимкнено світ %world%! &7Не вдалося виконати RTP!'
+  Cooldown: '&cВибачте! &7Ви повинні зачекати &c%time%&7, щоб виконати RTP ще раз!'
+  Locked: '&cВибачте! &7Ви використали всі свої RTP!'
+  Invalid: '&cНеправильний аргумент. Виконайте ''/%command% help'''
+  NotOnline: '&cГравець &7%player% &cне в мережі!'
+  Delay: '&aТелепортація за &f%time% &aсекунд! Не рухайся!'
+  Moved: '&cВи рухалися! &7RTP скасовано!'
+  NotExist: '&cСхоже, що світ &7%world% &cне існує!'
+  Already: '&cУпс! &7Здається, ви вже телепортуєтесь, наберіться трохи терпіння!'
+  Sign: '&7Командний знак створено! &7Команда... ''&f/rtp %command%&7'''
+  Edit:
+    Error: '&cПомилка! &7Введено невірні дані!'
+    Set: '&bУспішно! &7%type% встановлено на %value%'
+    Remove: '&cВидалено! &7Ви видалили користувацький світ %world%'
+
+Help:
+  Prefix: '&e&m-----&6&l BetterRTP &8| Допомога &e&m-----'
+  Main: ' &7- &e/%command% &7- Випадково телепортує вас!'
+  Biome: ' &7- &e/%command% biome <біом1, біом2...> &7- Випадково телепортує за вказаними біомами'
+  Edit: ' &7- &e/%command% edit <default/світ> [аргументи...] &7- Відредагувати деякі налаштування плагіна'
+  Help: ' &7- &e/%command% help &7- Показати список допомоги'
+  Info: ' &7- &e/%command% info [world/particles/shapes/potion_effects] &7- Переглянути конкретну інформацію про параметри плагіна'
+  Player: ' &7- &e/%command% player <гравець> [світ] [біом1, біом2...] &7- Випадково телепортуйте іншого гравця'
+  Reload: ' &7- &e/%command% reload &7- Перезавантажити плагін'
+  Settings: ' &7- &e/%command% settings &7- Викликати інтерфейс і відредагувати деякі налаштування'
+  Test: ' &7- &e/%command% test &7- Протестувати ефекти плагіна після телепортації без переміщення'
+  Version: ' &7- &e/%command% version &7- Переглянути поточну версію'
+  World: ' &7- &e/%command% world <світ> [біом1, біом2...] &7- Випадкова телепортація в інший світ'
+  Location: ' &7- &e/%command% location <назва_локації> &7- RTP з використанням певної локації'
+
+Usage:
+  Player: '&cВикористання&7: /%command% player <гравець> [світ] [біом1, біом2]'
+  World: '&cВикористання&7: /%command% world <світ> [біом1, biome2...]'
+  Biome: '&cВикористання&7: /%command% biome <біом1, біом2...>'
+  Location: '&cВикористання&7: /%command% location <назва_локації>'
+  Edit:
+    Base: '&cВикористання&7: /%command% edit <default/світ> [аргументи...]'
+    Default: '&cВикористання&7: /%command% edit default <max/min/useworldborder/center> <значення>'
+    World: '&cВикористання&7: /%command% edit customworld <світ> <max/min/useworldborder/center> <значення>'
+    PermissionGroup: '&cВикористання&7: /%command% edit permission_group <група> <світ> <max/min/useworldborder/center> <значення>'
+    Location: '&cВикористання&7: /%command% edit location <location_name> <max/min/useworldborder/center> <значення>'
+    Worldtype: '&cВикористання&7: /%command% edit world_type <світ> <NETHER/NORMAL>'
+    Override: '&cВикористання&7: /%command% edit override <світ> <world_to>'
+    BlacklistedBlocks: '&cВикористання&7: /%command% edit blacklistedblocks <add/remove> <block_id>'
