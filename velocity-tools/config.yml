@@ -1,0 +1,125 @@
+version: "1.2.1"
+#Доступні серіалізатори:
+#LEGACY_AMPERSAND - "&c&lПриклад &c&9Тексту".
+#LEGACY_SECTION - "§c§lПриклад §c§9Тексту".
+#MINIMESSAGE - "<bold><red>Приклад</red> <blue>Тексту</blue></bold>". (https://webui.adventure.kyori.net/)
+#GSON - "[{"text":"Приклад","bold":true,"color":"red"},{"text":" ","bold":true},{"text":"Тексту","bold":true,"color":"blue"}]". (https://minecraft.tools/en/json_text.php/)
+#GSON_COLOR_DOWNSAMPLING - Те саме, що й GSON, але використовує даундискретизацію.
+serializer: LEGACY_AMPERSAND
+main:
+  #VelocityTools буде споживати більше оперативної пам'яті, якщо цю опцію увімкнено, але сумісність з іншими плагінами буде кращою
+  #Увімкніть його, якщо у вас встановлений плагін, який обходить стиснення (наприклад, Geyser)
+  save-uncompressed-packets: true
+#Не використовуйте \n, використовуйте {NL} для нового рядка. Також підтримуються коди кольорів з амперсандом (&).
+
+#
+#Дозволи:
+#  │
+#  └── Команди:
+#      │
+#      ├── /velocitytools reload
+#      │   └── velocitytools.admin.reload
+#      ├── /alert
+#      │   └── velocitytools.command.alert
+#      ├── /find
+#      │   └── velocitytools.command.find
+#      ├── /send
+#      │   └── velocitytools.command.send
+#      └── /hub
+#          ├── velocitytools.command.hub
+#          └── velocitytools.command.hub.bypass.<назвасерверу> (дозвіл на обхід disabled-servers)
+#
+commands:
+  alert:
+    enabled: true
+    prefix: "&8[&4Alert&8] &r{0}"
+    message-needed: "&cВи повинні передати повідомлення."
+    empty-proxy: "&cДо цього проксі ніхто не підключений!"
+  find:
+    enabled: true
+    username-needed: "&cВи повинні вказати ім'я користувача."
+    player-online-at: "&6{0} &fв мережі на сервері &6{1}"
+    player-not-online: "&6{0} &fне в мережі."
+  send:
+    enabled: true
+    console: "CONSOLE"
+    not-enough-arguments: "&fНе вистачає аргументів. Використовуйте: &6/send <server|player|all|current> <ціль>"
+    #Set to "" to disable.
+    you-got-summoned: "&fВідправлено &6{0} &fвід &6{1}"
+    player-not-online: "&6{0} &fне в мережі."
+    callback: "&aСпроба відправити {0} гравців дo {1}"
+    not-on-server: "&cПомилка: Ви не на сервері."
+  hub:
+    enabled: true
+    servers:
+      - "hub-1"
+      - "hub-2"
+    #Встановіть "", щоб вимкнути.
+    you-got-moved: "&aВас переміщено до хабу!"
+    disabled-server: "&cВи не можете використовувати цю команду тут."
+    disabled-servers:
+      - "foo"
+      - "bar"
+    aliases:
+      - "hub"
+      - "lobby"
+tools:
+  #Приховує повідомлення Legacy Ping.
+  disable-legacy-ping: true
+  #Приховує повідомлення "... provided invalid protocol ..." message. Допомагає при деяких типах атак. (https://media.discordapp.net/attachments/868930650537857024/921383075454259300/unknown.png)
+  disable-invalid-protocol: true
+  protocol-blocker:
+    block-join: true
+    block-ping: false
+    #Якщо значення true, всі протоколи, окрім перелічених нижче, будуть заблоковані.
+    whitelist: false
+    #Тут ви можете вказати номер протоколу (наприклад, '340' для 1.12.2) або версію Minecraft нижче (наприклад, '1.12.2')
+    #З переліком протоколів можна ознайомитися тут: https://wiki.vg/Protocol_version_numbers
+    protocols:
+      - 9999
+      - 9998
+    #Список версій:
+    #1.7.2, 1.7.6, 1.8, 1.9, 1.9.1, 1.9.2, 1.9.4, 1.10, 1.11, 1.11.1, 1.12, 1.12.1, 1.12.2,
+    #1.13, 1.13.1, 1.13.2, 1.14, 1.14.1, 1.14.2, 1.14.3, 1.14.4, 1.15, 1.15.1, 1.15.2,
+    #1.16, 1.16.1, 1.16.2, 1.16.3, 1.16.4, 1.17, 1.17.1, 1.18, 1.18.2, 1.19, 1.19.1, 1.19.3, 1.19.4,
+    #1.20, 1.20.1, 1.20.2, 1.20.3, 1.20.4, LATEST
+    versions:
+      - "1.7.2"
+    minimum-version: "1.7.2"
+    maximum-version: "LATEST"
+    #Для опції "block-ping".
+    brand: "Версія не підтримується!"
+    #Для "block-ping", встановіть "" щоб вимкнути.
+    motd: "&cВерсія не підтримується!{NL}&eБудь ласка, зайдіть з версії Minecraft 1.12.2 або новішої."
+    #Для опції "block-joining".
+    kick-reason: "&cВаша версія не підтримується!"
+  brand-changer:
+    rewrite-in-ping: true
+    rewrite-in-game: true
+    ping-brand: "ВашийСервер 1.12.2-1.20.4"
+    #Для пінгу.
+    show-always: false
+    #{0} - Оригінальна марка сервера (e.g. Paper).
+    in-game-brand: "ВашийСервер ({0})"
+  #Не працює з srv-записами.
+  hostnames-manager:
+    block-join: false
+    block-ping: false
+    #З'єднання Логування IP.
+    debug: false
+    #Для опції "debug".
+    show-blocked-only: false
+    #Для опції "block-joining", встановіть значення "" щоб показати причину за замовчуванням.
+    kick-reason: "&cБудь ласка, не підключайтеся на прямий ip!{NL}Використовуйте example.com"
+    whitelist: true
+    #IP-адреси, що починаються з "127."  або дорівнюють "localhost", будуть заблоковані.
+    block-local-addresses: false
+    #DoMaIn.net буде схожий на domain.net.
+    ignore-case: true
+    hostnames:
+      - "your-domain.net"
+      - "your-domain.com"
+    #Список IP-адрес, які будуть обходити цю перевірку.
+    ignored-ips:
+      - "79.555.*"
+      - "228.1337.*"
